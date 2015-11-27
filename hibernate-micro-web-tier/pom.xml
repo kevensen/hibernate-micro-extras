@@ -1,0 +1,56 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+  <modelVersion>4.0.0</modelVersion>
+
+  <artifactId>hibernate-micro-web-tier</artifactId>
+  <name>Hibernate Web Tier Microservice</name>
+  <version>0.0.1-SNAPSHOT</version>
+  <groupId>org.jboss.eclipse.dd</groupId>
+  <packaging>war</packaging>
+  
+  <properties>
+	<!-- Add the following properties below the version.war.plugin property -->
+	<version.compiler.plugin>2.3.1</version.compiler.plugin>
+        <!-- maven-compiler-plugin -->
+        <maven.compiler.target>1.6</maven.compiler.target>
+        <maven.compiler.source>1.6</maven.compiler.source>
+    </properties>
+   
+
+
+    <!-- Change your dependencyManagement section to reflect the section below -->
+    <dependencyManagement>
+        <dependencies>
+            <dependency>
+                <groupId>org.jboss.bom.eap</groupId>
+                <artifactId>jboss-javaee-6.0-with-tools</artifactId>
+                <version>${version.jboss.bom.eap}</version>
+                <type>pom</type>
+                <scope>import</scope>
+            </dependency>
+            <dependency>
+	             <groupId>org.jboss.as</groupId>
+	             <artifactId>jboss-as-ejb-client-bom</artifactId>
+	             <version>${version.jboss.as}</version>
+	             <type>pom</type>
+	             <scope>import</scope>
+         	</dependency>
+        </dependencies>
+    </dependencyManagement>
+    
+        <build>
+        <finalName>${project.artifactId}</finalName>
+        <plugins>
+		<!-- Add the maven-compiler-plugin to the build section
+		     in order to enforce the compiler version -->
+        	<plugin>
+        		<artifactId>maven-compiler-plugin</artifactId>
+        		<version>${version.compiler.plugin}</version>
+        		<configuration>
+        			<source>${maven.compiler.source}</source>
+        			<target>${maven.compiler.target}</target>
+        		</configuration>
+        	</plugin>
+        </plugins>
+    </build>
+
+</project>

@@ -1,0 +1,51 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+  <modelVersion>4.0.0</modelVersion>
+
+  <artifactId>hibernate-micro-business-tier</artifactId>
+  <version>0.0.1-SNAPSHOT</version>
+  <groupId>org.jboss.eclipse.dd</groupId>
+  <name>Hibernate Business Tier Microservice</name>
+  <!-- Change the packaging type to EJB -->
+  <packaging>ejb</packaging>
+  
+  <properties>
+        <!-- In the hibernate-micro-business-tier pom.xml, remove the <version.war.plugin> property and
+             ensure these are present -->
+        <maven.compiler.target>1.6</maven.compiler.target>
+        <maven.compiler.source>1.6</maven.compiler.source>
+        
+        <ejb.plugin.version>2.3</ejb.plugin.version>
+	<version.compiler.plugin>2.3.1</version.compiler.plugin>
+    </properties>
+   
+    <!-- Add the following build section -->
+ 
+    <build>
+        <finalName>${project.artifactId}</finalName>
+        <plugins>
+        	<plugin>
+        		<artifactId>maven-compiler-plugin</artifactId>
+        		<version>${version.compiler.plugin}</version>
+        		<configuration>
+        			<source>${maven.compiler.source}</source>
+        			<target>${maven.compiler.target}</target>
+        		</configuration>
+        	</plugin>
+        	
+        	
+            <plugin>  <!--  must include ejb-plugin to change the EJB version from 2.1 to 3.1 -->
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-ejb-plugin</artifactId>
+                <version>${ejb.plugin.version}</version>
+                <configuration>
+                    <ejbVersion>3.1</ejbVersion>
+                    <generateClient>false</generateClient>                    
+                    <archive>
+                        <addMavenDescriptor>false</addMavenDescriptor>
+                    </archive>
+                </configuration>
+            </plugin>
+        </plugins>
+     </build>
+  
+</project>
